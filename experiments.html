@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Experiments · EffectTrace</title>
+<meta name="description" content="Every EffectTrace experiment scenario with its status, checks and notes, generated from test-results.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f8fb" media="(prefers-color-scheme: light)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EffectTrace">
+<meta property="og:title" content="Experiments · EffectTrace">
+<meta property="og:description" content="Every EffectTrace experiment scenario with its status, checks and notes, generated from test-results.">
+<meta property="og:url" content="https://effecttrace.github.io/experiments.html">
+<meta property="og:image" content="https://effecttrace.github.io/assets/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="EffectTrace: Trace the effect, not just the call.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Experiments · EffectTrace">
+<meta name="twitter:description" content="Every EffectTrace experiment scenario with its status, checks and notes, generated from test-results.">
+<meta name="twitter:image" content="https://effecttrace.github.io/assets/social-preview.png">
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/theme-init.js"></script>
+<script type="module" src="assets/js/site.js"></script>
+<script type="module" src="assets/js/experiments.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="container header-inner">
+<a class="brand" href="index.html" aria-label="EffectTrace home">
+<img class="theme-dark-only" src="assets/logo-dark.svg" alt="EffectTrace" width="128" height="34">
+<img class="theme-light-only" src="assets/logo.svg" alt="EffectTrace" width="128" height="34">
+</a>
+<nav class="nav" id="site-nav" aria-label="Primary">
+<ul class="nav-list">
+<li class="nav-group"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-learn">Learn <svg class="chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 4.5l3 3 3-3"/></svg></button><ul class="nav-menu" id="menu-learn"><li><a href="index.html#problem"><span class="m-title">Problem</span><span class="m-desc">Why the call is not the effect</span></a></li><li><a href="index.html#how-it-works"><span class="m-title">How it works</span><span class="m-desc">From tool call to effect graph</span></a></li><li><a href="index.html#evidence"><span class="m-title">Evidence model</span><span class="m-desc">Five evidence classes, weakest-link grades</span></a></li><li><a href="index.html#architecture"><span class="m-title">Architecture</span><span class="m-desc">One read-only, bounded, deterministic collector</span></a></li></ul></li><li class="nav-group"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-proof" aria-current="true">Proof <svg class="chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 4.5l3 3 3-3"/></svg></button><ul class="nav-menu" id="menu-proof"><li><a href="experiments.html" aria-current="page"><span class="m-title">Experiments</span><span class="m-desc">Every scenario, every check, every failure</span></a></li><li><a href="results.html"><span class="m-title">Results</span><span class="m-desc">Precision, recall and timings from test-results</span></a></li><li><a href="replay.html"><span class="m-title">Demo replay</span><span class="m-desc">Explore recorded effect graphs in the browser</span></a></li></ul></li><li class="nav-group"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-integrations">Integrations <svg class="chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 4.5l3 3 3-3"/></svg></button><ul class="nav-menu" id="menu-integrations"><li><a href="opentelemetry.html"><span class="m-title">OpenTelemetry</span><span class="m-desc">OTLP in, span links out, MCP trace context</span></a></li><li><a href="kubernetes.html"><span class="m-title">Kubernetes</span><span class="m-desc">Audit-ID, UIDs, ownerReferences, read-only watch</span></a></li></ul></li><li class="nav-group"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-project">Project <svg class="chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 4.5l3 3 3-3"/></svg></button><ul class="nav-menu" id="menu-project"><li><a href="security.html"><span class="m-title">Security &amp; privacy</span><span class="m-desc">Metadata, not payloads</span></a></li><li><a href="limitations.html"><span class="m-title">Limitations</span><span class="m-desc">What EffectTrace cannot tell you</span></a></li><li><a href="project.html#docs"><span class="m-title">Docs</span><span class="m-desc">Reference documentation on GitHub</span></a></li><li><a href="project.html#roadmap"><span class="m-title">Roadmap</span><span class="m-desc">Planned work</span></a></li><li><a href="project.html#contributing"><span class="m-title">Contributing</span><span class="m-desc">Issues, pull requests, conduct</span></a></li></ul></li>
+</ul>
+</nav>
+<div class="header-actions">
+<a class="icon-btn" href="https://github.com/effecttrace/effecttrace" aria-label="EffectTrace on GitHub"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="gh-label">GitHub</span></a>
+<button class="icon-btn theme-toggle" type="button" aria-label="Toggle color theme"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M20.5 14.2A8.5 8.5 0 019.8 3.5a8.5 8.5 0 1010.7 10.7z"/></svg></button>
+<button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div>
+</div>
+</header>
+<main id="main">
+
+<section class="page-hero">
+<div class="container">
+<span class="kicker">Proof · Experiments</span>
+<h1>Every scenario, every check</h1>
+<p class="lead">Scenarios run against the kind lab and are scored against ground truth from the harness's own actions and an independent watch of the cluster. Failures, errors and unsupported scenarios are shown exactly as recorded.</p>
+</div>
+</section>
+<section class="section" aria-label="Experiment list">
+<div class="container">
+<div class="filters" id="exp-filters" aria-label="Filter experiments"></div>
+<p class="result-count" id="exp-count" aria-live="polite"><span class="loading">Loading data/results.json…</span></p>
+<div id="exp-list"></div>
+<p class="data-foot" id="exp-foot"></p>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<img class="theme-dark-only" src="assets/logo-dark.svg" alt="EffectTrace" width="113" height="30" loading="lazy">
+<img class="theme-light-only" src="assets/logo.svg" alt="EffectTrace" width="113" height="30" loading="lazy">
+<p>Open, evidence-graded observability from agent actions to Kubernetes effects.</p>
+</div>
+<div class="footer-col"><h2>Learn</h2><ul>
+<li><a href="index.html#problem">Problem</a></li>
+<li><a href="index.html#how-it-works">How it works</a></li>
+<li><a href="index.html#evidence">Evidence model</a></li>
+<li><a href="index.html#architecture">Architecture</a></li>
+</ul></div>
+<div class="footer-col"><h2>Proof</h2><ul>
+<li><a href="experiments.html">Experiments</a></li>
+<li><a href="results.html">Results</a></li>
+<li><a href="replay.html">Demo replay</a></li>
+</ul></div>
+<div class="footer-col"><h2>Integrations</h2><ul>
+<li><a href="opentelemetry.html">OpenTelemetry</a></li>
+<li><a href="kubernetes.html">Kubernetes</a></li>
+</ul></div>
+<div class="footer-col"><h2>Project</h2><ul>
+<li><a href="security.html">Security &amp; privacy</a></li>
+<li><a href="limitations.html">Limitations</a></li>
+<li><a href="project.html#docs">Docs</a></li>
+<li><a href="project.html#roadmap">Roadmap</a></li>
+<li><a href="project.html#contributing">Contributing</a></li>
+<li><a href="https://github.com/effecttrace/effecttrace">GitHub</a></li>
+</ul></div>
+</div>
+<div class="footer-bottom">
+<span>EffectTrace is open source under the <a href="https://github.com/effecttrace/effecttrace/blob/main/LICENSE">Apache License 2.0</a>. No cookies, no analytics, no third-party requests.</span>
+<span class="causal">Temporal correlation does not prove causation.</span>
+</div>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>EffectTrace · Trace the effect, not just the call.</title>
+<meta name="description" content="Open, evidence-graded observability from agent actions to Kubernetes effects. Apache-2.0, no LLM required.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f8fb" media="(prefers-color-scheme: light)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EffectTrace">
+<meta property="og:title" content="EffectTrace · Trace the effect, not just the call.">
+<meta property="og:description" content="Open, evidence-graded observability from agent actions to Kubernetes effects. Apache-2.0, no LLM required.">
+<meta property="og:url" content="https://effecttrace.github.io/">
+<meta property="og:image" content="https://effecttrace.github.io/assets/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="EffectTrace: Trace the effect, not just the call.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EffectTrace · Trace the effect, not just the call.">
+<meta name="twitter:description" content="Open, evidence-graded observability from agent actions to Kubernetes effects. Apache-2.0, no LLM required.">
+<meta name="twitter:image" content="https://effecttrace.github.io/assets/social-preview.png">
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/theme-init.js"></script>
+<script type="module" src="assets/js/site.js"></script>
+<script type="module" src="assets/js/home.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="container header-inner">
+<a class="brand" href="index.html" aria-label="EffectTrace home">
+<img class="theme-dark-only" src="assets/logo-dark.svg" alt="EffectTrace" width="128" height="34">
+<img class="theme-light-only" src="assets/logo.svg" alt="EffectTrace" width="128" height="34">
+</a>
+<nav class="nav" id="site-nav" aria-label="Primary">
+<ul class="nav-list">
+<li class="nav-group"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-learn">Learn <svg class="chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 4.5l3 3 3-3"/></svg></button><ul class="nav-menu" id="menu-learn"><li><a href="index.html#problem"><span class="m-title">Problem</span><span class="m-desc">Why the call is not the effect</span></a></li><li><a href="index.html#how-it-works"><span class="m-title">How it works</span><span class="m-desc">From tool call to effect graph</span></a></li><li><a href="index.html#evidence"><span class="m-title">Evidence model</span><span class="m-desc">Five evidence classes, weakest-link grades</span></a></li><li><a href="index.html#architecture"><span class="m-title">Architecture</span><span class="m-desc">One read-only, bounded, deterministic collector</span></a></li></ul></li><li class="nav-group"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-proof">Proof <svg class="chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 4.5l3 3 3-3"/></svg></button><ul class="nav-menu" id="menu-proof"><li><a href="experiments.html"><span class="m-title">Experiments</span><span class="m-desc">Every scenario, every check, every failure</span></a></li><li><a href="results.html"><span class="m-title">Results</span><span class="m-desc">Precision, recall and timings from test-results</span></a></li><li><a href="replay.html"><span class="m-title">Demo replay</span><span class="m-desc">Explore recorded effect graphs in the browser</span></a></li></ul></li><li class="nav-group"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-integrations">Integrations <svg class="chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 4.5l3 3 3-3"/></svg></button><ul class="nav-menu" id="menu-integrations"><li><a href="opentelemetry.html"><span class="m-title">OpenTelemetry</span><span class="m-desc">OTLP in, span links out, MCP trace context</span></a></li><li><a href="kubernetes.html"><span class="m-title">Kubernetes</span><span class="m-desc">Audit-ID, UIDs, ownerReferences, read-only watch</span></a></li></ul></li><li class="nav-group"><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-project">Project <svg class="chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 4.5l3 3 3-3"/></svg></button><ul class="nav-menu" id="menu-project"><li><a href="security.html"><span class="m-title">Security &amp; privacy</span><span class="m-desc">Metadata, not payloads</span></a></li><li><a href="limitations.html"><span class="m-title">Limitations</span><span class="m-desc">What EffectTrace cannot tell you</span></a></li><li><a href="project.html#docs"><span class="m-title">Docs</span><span class="m-desc">Reference documentation on GitHub</span></a></li><li><a href="project.html#roadmap"><span class="m-title">Roadmap</span><span class="m-desc">Planned work</span></a></li><li><a href="project.html#contributing"><span class="m-title">Contributing</span><span class="m-desc">Issues, pull requests, conduct</span></a></li></ul></li>
+</ul>
+</nav>
+<div class="header-actions">
+<a class="icon-btn" href="https://github.com/effecttrace/effecttrace" aria-label="EffectTrace on GitHub"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="gh-label">GitHub</span></a>
+<button class="icon-btn theme-toggle" type="button" aria-label="Toggle color theme"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M20.5 14.2A8.5 8.5 0 019.8 3.5a8.5 8.5 0 1010.7 10.7z"/></svg></button>
+<button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div>
+</div>
+</header>
+<main id="main">
+
+<section class="hero" aria-labelledby="hero-title">
+<div class="container">
+<img class="hero-logo theme-dark-only" src="assets/logo-dark.svg" alt="EffectTrace" width="224" height="60">
+<img class="hero-logo theme-light-only" src="assets/logo.svg" alt="EffectTrace" width="224" height="60">
+<p class="eyebrow"><span class="dot" aria-hidden="true"></span>Apache-2.0 · open source · no LLM required</p>
+<h1 id="hero-title"><span class="grad-text">Trace the effect, not just the call.</span></h1>
+<p class="hero-sub">Open, evidence-graded observability from agent actions to Kubernetes effects.</p>
+<div class="cta-row">
+<a class="btn btn-primary" href="https://github.com/effecttrace/effecttrace"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>View on GitHub</a>
+<a class="btn btn-ghost" href="replay.html"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6 4.2v11.6L15.5 10z"/></svg>Watch the replay</a>
+</div>
+<p class="hero-note">Composes OpenTelemetry, the Kubernetes audit log, object ownership and Prometheus. Replaces none of them.</p>
+
+<figure class="diagram-card hd-anim is-pending" id="hero-diagram" aria-labelledby="hero-diagram-cap">
+<div class="diagram-bar">
+<div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+<span class="title" id="hero-diagram-cap">effect graph · one agent action, every edge graded</span>
+<div class="hd-controls" hidden>
+<button class="btn btn-ghost btn-sm" type="button" id="hd-toggle" aria-controls="hero-diagram"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M5.5 4h3v12h-3zM11.5 4h3v12h-3z"/></svg><span class="hd-label">Pause</span></button>
+</div>
+</div>
+<div class="diagram-body">
+<svg class="hero-svg wide" viewBox="0 0 1030 342" role="img" aria-labelledby="hw-t hw-d"><title id="hw-t">Animated example: how EffectTrace grades one agent action</title><desc id="hw-d">An agent&#x27;s tools/call restart_workload is linked by TRACE_LINK to a PATCH request, which changed Deployment shop/checkout by DIRECT evidence. The new ReplicaSet and its three Pods follow by STRUCTURAL evidence and are graded ATTRIBUTED. A p99 latency increase is attached only as a dashed TEMPORAL correlation and graded CORRELATED. Meanwhile a human runs kubectl scale on shop/payments; EffectTrace finds no ownership path to it, so it stays disconnected and is listed as excluded.</desc><g class="a-fade d11"><rect class="zone" x="20" y="168" width="500" height="166" rx="14"/><text class="zone-label" x="36" y="190">MEANWHILE · SAME MINUTE · ANOTHER ACTOR</text></g><path class="e e-trace a-draw d1" pathLength="1" d="M200 71.0H290"/><path class="e e-direct a-draw d3" pathLength="1" d="M470 71.0H560"/><path class="e e-struct a-draw d5" pathLength="1" d="M740 71.0H830"/><path class="e e-struct a-draw d7" pathLength="1" d="M920.0 102V186"/><mask id="hw-mask-t" maskUnits="userSpaceOnUse"><path class="mask-line a-draw d9" pathLength="1" d="M650.0 102V186"/></mask><path class="e e-temporal" mask="url(#hw-mask-t)" d="M650.0 102V186"/><g class="a-node d0"><rect class="node-box" x="20" y="40" width="180" height="62" rx="10"/><rect class="node-accent fill-trace" x="20" y="52" width="3" height="38" rx="1.5"/><text class="t-kind" x="34" y="58">AGENT · TOOLS/CALL</text><text class="t-name" x="34" y="76">restart_workload</text><text class="t-sub" x="34" y="92">traceparent in _meta</text></g><g class="a-node d2"><rect class="node-box" x="290" y="40" width="180" height="62" rx="10"/><rect class="node-accent fill-trace" x="290" y="52" width="3" height="38" rx="1.5"/><text class="t-kind" x="304" y="58">KUBERNETES REQUEST</text><text class="t-name" x="304" y="76">PATCH deployments</text><text class="t-sub" x="304" y="92">Audit-ID · UID · rv</text></g><g class="a-node d4"><rect class="node-box" x="560" y="40" width="180" height="62" rx="10"/><rect class="node-accent fill-direct" x="560" y="52" width="3" height="38" rx="1.5"/><text class="t-kind" x="574" y="58">DEPLOYMENT · MUTATED</text><text class="t-name" x="574" y="76">shop/checkout</text><text class="t-sub" x="574" y="92">generation 4 → 5</text></g><g class="a-node d6"><rect class="node-box" x="830" y="40" width="180" height="62" rx="10"/><rect class="node-accent fill-struct" x="830" y="52" width="3" height="38" rx="1.5"/><text class="t-kind" x="844" y="58">REPLICASET · CREATED</text><text class="t-name" x="844" y="76">checkout-65956f67f</text><text class="t-sub" x="844" y="92">ownerReference by UID</text></g><g class="a-node d8"><rect class="stack-box" x="838" y="178" width="180" height="62" rx="10"/><rect class="stack-box" x="834" y="182" width="180" height="62" rx="10"/><rect class="node-box" x="830" y="186" width="180" height="62" rx="10"/><rect class="node-accent fill-struct" x="830" y="198" width="3" height="38" rx="1.5"/><text class="t-kind" x="844" y="204">3 PODS · CREATED</text><text class="t-name" x="844" y="222">checkout-65956f67f-*</text><text class="t-sub" x="844" y="238">3/3 ready</text></g><g class="a-node d10"><rect class="node-box" x="560" y="186" width="180" height="62" rx="10"/><rect class="node-accent fill-temporal" x="560" y="198" width="3" height="38" rx="1.5"/><text class="t-kind" x="574" y="204">METRIC · CHANGED</text><text class="t-name" x="574" y="222">p99 latency</text><text class="t-sub" x="574" y="238">50 ms → 149 ms</text></g><g class="a-fade d2"><rect class="pill-bg" x="206.0" y="62.0" width="78.0" height="18" rx="9"/><text class="t-edge txt-trace" x="245.0" y="74.5" text-anchor="middle">TRACE_LINK</text></g><g class="a-fade d4"><rect class="pill-bg" x="488.8" y="62.0" width="52.4" height="18" rx="9"/><text class="t-edge txt-direct" x="515.0" y="74.5" text-anchor="middle">DIRECT</text></g><g class="a-fade d6"><rect class="pill-bg" x="746.0" y="62.0" width="78.0" height="18" rx="9"/><text class="t-edge txt-struct" x="785.0" y="74.5" text-anchor="middle">STRUCTURAL</text></g><g class="a-fade d8"><rect class="pill-bg" x="881.0" y="135.0" width="78.0" height="18" rx="9"/><text class="t-edge txt-struct" x="920.0" y="147.5" text-anchor="middle">STRUCTURAL</text></g><g class="a-fade d10"><rect class="pill-bg" x="611.0" y="135.0" width="78.0" height="18" rx="9"/><text class="t-edge txt-temporal" x="650.0" y="147.5" text-anchor="middle">CORRELATED</text></g><g class="a-node d11"><rect class="unrelated-box" x="40" y="210" width="190" height="56" rx="10"/><text class="t-kind" x="54" y="228">HUMAN · KUBECTL</text><text class="t-name" x="54" y="246">kubectl scale</text><text class="t-sub" x="54" y="262">payments 2 → 4</text></g><path class="e e-excluded a-fade d11" d="M230 238H300"/><g class="a-node d11"><rect class="unrelated-box" x="300" y="210" width="200" height="56" rx="10"/><text class="t-kind" x="314" y="228">DEPLOYMENT · SCALED</text><text class="t-name" x="314" y="246">shop/payments</text><text class="t-sub" x="314" y="262">its own effect graph</text></g><path class="e e-excluded a-probe d12" d="M580 102C570 150 470 150 440 210"/><g class="a-node d13"><circle cx="517" cy="151" r="11" class="pill-bg"/><path class="cut" d="M512 146L522 156M522 146L512 156"/></g><g class="a-node d13"><rect class="excl-tag" x="300" y="280" width="200" height="40" rx="8" stroke-width="1.1"/><text class="t-edge txt-muted" x="312" y="296">EXCLUDED</text><text class="t-sub" x="312" y="311">no ownership path</text></g><g class="a-node d14"><rect class="grade-attr" x="856" y="268" width="128" height="22" rx="6" stroke-width="1.2"/><text class="t-edge txt-direct" x="920.0" y="283" text-anchor="middle">ATTRIBUTED</text></g><g class="a-node d14"><rect class="grade-corr" x="586" y="268" width="128" height="22" rx="6" stroke-width="1.2"/><text class="t-edge txt-temporal" x="650.0" y="283" text-anchor="middle">CORRELATED</text></g></svg>
+<svg class="hero-svg tall" viewBox="0 0 360 770" role="img" aria-labelledby="ht-t ht-d"><title id="ht-t">Animated example: how EffectTrace grades one agent action</title><desc id="ht-d">An agent&#x27;s tools/call restart_workload is linked by TRACE_LINK to a PATCH request, which changed Deployment shop/checkout by DIRECT evidence. The new ReplicaSet and its three Pods follow by STRUCTURAL evidence and are graded ATTRIBUTED. A p99 latency increase is attached only as a dashed TEMPORAL correlation and graded CORRELATED. Meanwhile a human runs kubectl scale on shop/payments; EffectTrace finds no ownership path to it, so it stays disconnected and is listed as excluded.</desc><g class="a-fade d11"><rect class="zone" x="8" y="572" width="344" height="190" rx="14"/><text class="zone-label" x="22" y="594">MEANWHILE · ANOTHER ACTOR</text></g><path class="e e-trace a-draw d1" pathLength="1" d="M180.0 72V120"/><path class="e e-direct a-draw d3" pathLength="1" d="M180.0 178V226"/><path class="e e-struct a-draw d5" pathLength="1" d="M140.0 284C140.0 318 92.0 312 92.0 344"/><mask id="ht-mask-t" maskUnits="userSpaceOnUse"><path class="mask-line a-draw d9" pathLength="1" d="M220.0 284C220.0 318 268.0 312 268.0 344"/></mask><path class="e e-temporal" mask="url(#ht-mask-t)" d="M220.0 284C220.0 318 268.0 312 268.0 344"/><path class="e e-struct a-draw d7" pathLength="1" d="M92.0 402V460"/><g class="a-node d0"><rect class="node-box" x="30" y="14" width="300" height="58" rx="10"/><rect class="node-accent fill-trace" x="30" y="26" width="3" height="34" rx="1.5"/><text class="t-kind" x="44" y="32">AGENT · TOOLS/CALL</text><text class="t-name" x="44" y="50">restart_workload</text><text class="t-sub" x="44" y="66">traceparent in _meta</text></g><g class="a-node d2"><rect class="node-box" x="30" y="120" width="300" height="58" rx="10"/><rect class="node-accent fill-trace" x="30" y="132" width="3" height="34" rx="1.5"/><text class="t-kind" x="44" y="138">KUBERNETES REQUEST</text><text class="t-name" x="44" y="156">PATCH deployments</text><text class="t-sub" x="44" y="172">Audit-ID · UID · rv</text></g><g class="a-node d4"><rect class="node-box" x="30" y="226" width="300" height="58" rx="10"/><rect class="node-accent fill-direct" x="30" y="238" width="3" height="34" rx="1.5"/><text class="t-kind" x="44" y="244">DEPLOYMENT · MUTATED</text><text class="t-name" x="44" y="262">shop/checkout</text><text class="t-sub" x="44" y="278">generation 4 → 5</text></g><g class="a-node d6"><rect class="node-box" x="12" y="344" width="160" height="58" rx="10"/><rect class="node-accent fill-struct" x="12" y="356" width="3" height="34" rx="1.5"/><text class="t-kind" x="26" y="362">REPLICASET · NEW</text><text class="t-name" x="26" y="380" font-size="13">checkout-659…</text><text class="t-sub" x="26" y="396">ownerReference by UID</text></g><g class="a-node d8"><rect class="stack-box" x="20" y="452" width="160" height="58" rx="10"/><rect class="stack-box" x="16" y="456" width="160" height="58" rx="10"/><rect class="node-box" x="12" y="460" width="160" height="58" rx="10"/><rect class="node-accent fill-struct" x="12" y="472" width="3" height="34" rx="1.5"/><text class="t-kind" x="26" y="478">3 PODS · CREATED</text><text class="t-name" x="26" y="496" font-size="13">checkout-659…-*</text><text class="t-sub" x="26" y="512">3/3 ready</text></g><g class="a-node d10"><rect class="node-box" x="188" y="344" width="160" height="58" rx="10"/><rect class="node-accent fill-temporal" x="188" y="356" width="3" height="34" rx="1.5"/><text class="t-kind" x="202" y="362">METRIC · CHANGED</text><text class="t-name" x="202" y="380" font-size="13">p99 latency</text><text class="t-sub" x="202" y="396">50 → 149 ms</text></g><g class="a-fade d2"><rect class="pill-bg" x="141.0" y="87.0" width="78.0" height="18" rx="9"/><text class="t-edge txt-trace" x="180.0" y="99.5" text-anchor="middle">TRACE_LINK</text></g><g class="a-fade d4"><rect class="pill-bg" x="153.8" y="193.0" width="52.4" height="18" rx="9"/><text class="t-edge txt-direct" x="180.0" y="205.5" text-anchor="middle">DIRECT</text></g><g class="a-fade d6"><rect class="pill-bg" x="57.0" y="309" width="78.0" height="18" rx="9"/><text class="t-edge txt-struct" x="96.0" y="321.5" text-anchor="middle">STRUCTURAL</text></g><g class="a-fade d10"><rect class="pill-bg" x="225.0" y="309" width="78.0" height="18" rx="9"/><text class="t-edge txt-temporal" x="264.0" y="321.5" text-anchor="middle">CORRELATED</text></g><g class="a-fade d8"><rect class="pill-bg" x="53.0" y="424.0" width="78.0" height="18" rx="9"/><text class="t-edge txt-struct" x="92.0" y="436.5" text-anchor="middle">STRUCTURAL</text></g><g class="a-node d14"><rect class="grade-corr" x="204" y="414" width="128" height="22" rx="6" stroke-width="1.2"/><text class="t-edge txt-temporal" x="268.0" y="429" text-anchor="middle">CORRELATED</text></g><g class="a-node d14"><rect class="grade-attr" x="28" y="534" width="128" height="22" rx="6" stroke-width="1.2"/><text class="t-edge txt-direct" x="92.0" y="549" text-anchor="middle">ATTRIBUTED</text></g><g class="a-node d11"><rect class="unrelated-box" x="12" y="610" width="160" height="56" rx="10"/><text class="t-kind" x="26" y="628">HUMAN · KUBECTL</text><text class="t-name" x="26" y="646" font-size="13">kubectl scale</text><text class="t-sub" x="26" y="662">payments 2 → 4</text></g><path class="e e-excluded a-fade d11" d="M172 638H188"/><g class="a-node d11"><rect class="unrelated-box" x="188" y="610" width="160" height="56" rx="10"/><text class="t-kind" x="202" y="628">DEPLOYMENT · SCALED</text><text class="t-name" x="202" y="646" font-size="13">shop/payments</text><text class="t-sub" x="202" y="662">own effect graph</text></g><path class="e e-excluded a-probe d12" d="M318 444C338 520 338 560 308 610"/><g class="a-node d13"><circle cx="334" cy="527" r="11" class="pill-bg"/><path class="cut" d="M329 522L339 532M339 522L329 532"/></g><g class="a-node d13"><rect class="excl-tag" x="168" y="690" width="180" height="40" rx="8" stroke-width="1.1"/><text class="t-edge txt-muted" x="180" y="706">EXCLUDED</text><text class="t-sub" x="180" y="721">no ownership path</text></g></svg>
+</div>
+<figcaption class="diagram-legend">
+<span class="ev-chip c-trace"><span class="sw"></span>TRACE_LINK</span>
+<span class="ev-chip c-direct"><span class="sw"></span>DIRECT</span>
+<span class="ev-chip c-struct"><span class="sw"></span>STRUCTURAL</span>
+<span class="ev-chip c-temporal dashed"><span class="sw"></span>CORRELATED</span>
+<span class="ev-chip c-excluded dashed"><span class="sw"></span>EXCLUDED</span>
+<span class="lg-note">Illustration. Real recorded graphs are in the <a href="replay.html">replay</a>.</span>
+</figcaption>
+</figure>
+</div>
+</section>
+
+<section class="section" aria-labelledby="gap-title">
+<div class="container">
+<div class="section-head center">
+<span class="kicker">The one question</span>
+<h2 id="gap-title">What changed after this action, and what evidence connects the action to each effect?</h2>
+</div>
+<div class="trio">
+<div class="card"><strong>OpenTelemetry</strong><span class="muted">can show that an agent called <code>restart_workload</code>.</span></div>
+<div class="card"><strong>Kubernetes</strong><span class="muted">can show that Pods changed.</span></div>
+<div class="card"><strong>EffectTrace</strong><span class="muted">connects those observations while keeping direct evidence separate from correlation.</span></div>
+</div>
+<div class="stat-grid" id="home-stats" aria-live="polite">
+</div>
+<p class="data-foot" id="home-stats-foot"><span class="loading">Loading the latest experiment summary…</span></p>
+</div>
+</section>
+
+<section class="section" id="problem" aria-labelledby="problem-title">
+<div class="container">
+<div class="two-col">
+<div>
+<span class="kicker">Problem</span>
+<h2 id="problem-title">The call is traced. The effect is not.</h2>
+<p class="muted">An agent calls a tool, and a trace shows the invocation. The consequences arrive later and elsewhere: the Kubernetes API accepts a mutation, a controller reconciles it asynchronously, ReplicaSets and Pods come and go, and latency or errors move.</p>
+<p class="muted">Between "an action was requested" and "these effects followed" there is a gap that neither traces nor timestamps can close on their own.</p>
+</div>
+<div>
+<figure class="art-frame"><picture><source data-theme-src="dark" media="(prefers-color-scheme: dark)" srcset="assets/art/windows-dark.svg"><source data-theme-src="light" media="(prefers-color-scheme: light)" srcset="assets/art/windows-light.svg"><img src="assets/art/windows-light.svg" alt="Timeline: baseline window, request, reconcile window ending after a stable status plus settle, telemetry window. A spike inside the window is a temporal correlation; a spike after it is not attached." loading="lazy" decoding="async" width="900"></picture></figure>
+<p class="art-caption">Observation windows bound what can be attached. A signal change inside the window is only a correlation; one after it is not attached at all.</p>
+</div>
+</div>
+<div class="grid grid-3 mt-lg">
+<div class="card"><div class="card-icon c-trace"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 6h5l6 12h5M4 18h5l2-4M15 6h5"/></svg></div><h3>Traces stop at controllers</h3><p class="muted">Controllers do not carry the original trace context. The span that requested a rollout ends long before the rollout does, and the Pods it produced never mention it.</p></div>
+<div class="card"><div class="card-icon c-temporal"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 7.5V12l3 2"/></svg></div><h3>Timestamps alone mislead</h3><p class="muted">In a busy cluster something always changed in the last minute. "It happened after" is not "it was caused by", and a concurrent human change looks exactly like a controller reaction.</p></div>
+<div class="card"><div class="card-icon c-direct"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="5" cy="12" r="2.5" fill="currentColor"/><circle cx="19" cy="5" r="2.5" fill="currentColor"/><circle cx="19" cy="19" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" d="M7.3 11l9.4-5M7.3 13l9.4 5" stroke-dasharray="0"/></svg></div><h3>EffectTrace grades every edge</h3><p class="muted">It never presents temporal correlation as causation, refuses to attach changes it cannot connect structurally, and says so when two actions compete for the same change.</p></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="how-it-works" aria-labelledby="how-title">
+<div class="container">
+<div class="section-head">
+<span class="kicker">How it works</span>
+<h2 id="how-title">From one tool call to an evidence-graded effect graph</h2>
+<p>One Go collector reads signals your platform already produces and composes them into a graph. Every edge records the rule that admitted it.</p>
+</div>
+<ol class="steps" role="list">
+<li class="card step"><h3>Observe the action</h3><p class="muted">An MCP <code>tools/call</code> arrives as an OpenTelemetry span with W3C trace context carried in <code>params._meta</code>, or a human <code>kubectl</code> request appears in the audit log.</p></li>
+<li class="card step"><h3>Prove the mutation</h3><p class="muted">The instrumented client records the server-echoed Audit-ID, object UID and resourceVersion; the audit event confirms them independently. That is <strong>DIRECT</strong> evidence.</p></li>
+<li class="card step"><h3>Follow the controllers</h3><p class="muted">Owner references matched by UID lead from the Deployment to new ReplicaSets and Pods inside the reconciliation window, but only when no other action claims the change.</p></li>
+<li class="card step"><h3>Grade and explain</h3><p class="muted">Telemetry changes are attached as <strong>correlation only</strong>. Each node is graded by its weakest edge; ambiguous and excluded observations are listed, not hidden.</p></li>
+</ol>
+<div class="art-stack">
+<div><figure class="art-frame"><picture><source data-theme-src="dark" media="(prefers-color-scheme: dark)" srcset="assets/art/pipeline-dark.svg"><source data-theme-src="light" media="(prefers-color-scheme: light)" srcset="assets/art/pipeline-light.svg"><img src="assets/art/pipeline-light.svg" alt="Inputs: OTLP spans, the kube-apiserver audit log, the Kubernetes watch and Prometheus. The collector runs a bounded queue, an idempotent in-memory store and a deterministic correlation engine. Outputs: read-only API, CLI, canonical JSON, OTLP graph spans, Prometheus metrics and replayable recordings." loading="lazy" decoding="async" width="900"></picture></figure><p class="art-caption">The pipeline: four inputs, one bounded and deterministic core, portable outputs.</p></div>
+<div><figure class="art-frame"><picture><source data-theme-src="dark" media="(prefers-color-scheme: dark)" srcset="assets/art/rollout-dark.svg"><source data-theme-src="light" media="(prefers-color-scheme: light)" srcset="assets/art/rollout-light.svg"><img src="assets/art/rollout-light.svg" alt="One restart, every effect graded: tool span, client span, Deployment, new and old ReplicaSets, Pods, Events and a correlated latency change." loading="lazy" decoding="async" width="900"></picture></figure><p class="art-caption">A rollout restart, end to end: each object reached through the evidence that justifies it.</p></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="evidence" aria-labelledby="evidence-title">
+<div class="container">
+<div class="section-head">
+<span class="kicker">Evidence model</span>
+<h2 id="evidence-title">Five evidence classes, one rule</h2>
+<p>Each relationship admits exactly one evidence class, enforced by the data model, so timing can never be dressed up as direct or structural evidence.</p>
+</div>
+<div class="grid grid-3">
+<article class="card ev-card c-direct">
+<span class="ev-tag">Attributes</span>
+<svg class="ev-line" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1="4" y1="7" x2="196" y2="7"/></svg>
+<h3>DIRECT</h3>
+<p>The action's own Kubernetes request changed the object.</p>
+<dl><dt>Established by</dt><dd>The server-generated Audit-ID echoed to the instrumented client, plus the object UID and resourceVersion from the response, confirmed by the matching kube-apiserver audit event.</dd><dt>Relationship</dt><dd><code>DIRECT_REQUEST</code></dd><dt>Source</dt><dd>OTLP client span, Kubernetes audit log</dd></dl>
+</article>
+<article class="card ev-card c-trace">
+<span class="ev-tag">Attributes</span>
+<svg class="ev-line" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1="4" y1="7" x2="196" y2="7"/></svg>
+<h3>TRACE_LINK</h3>
+<p>The Kubernetes client span descends from the MCP tool span.</p>
+<dl><dt>Established by</dt><dd>OpenTelemetry parent/child within the same trace; W3C traceparent travels in MCP params._meta.</dd><dt>Relationship</dt><dd><code>TRACE_PARENT</code></dd><dt>Source</dt><dd>OTLP</dd></dl>
+</article>
+<article class="card ev-card c-struct">
+<span class="ev-tag">Attributes</span>
+<svg class="ev-line" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1="4" y1="7" x2="196" y2="7"/></svg>
+<h3>STRUCTURAL</h3>
+<p>A controller owns the changed object.</p>
+<dl><dt>Established by</dt><dd>Controller ownerReferences matched by UID (Deployment → ReplicaSet → Pod) inside the action's reconciliation window, with no competing claimant.</dd><dt>Relationship</dt><dd><code>STRUCTURAL_OWNER</code></dd><dt>Source</dt><dd>Kubernetes watch</dd></dl>
+</article>
+<article class="card ev-card c-event">
+<span class="ev-tag">Attributes</span>
+<svg class="ev-line" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1="4" y1="7" x2="196" y2="7"/></svg>
+<h3>EVENT_REFERENCE</h3>
+<p>A Kubernetes Event points at an object already in the graph.</p>
+<dl><dt>Established by</dt><dd>The Event references the object by UID, inside one of this action's windows, with no competing claimant.</dd><dt>Relationship</dt><dd><code>EVENT_REFERENCE</code></dd><dt>Source</dt><dd>Kubernetes Events</dd></dl>
+</article>
+<article class="card ev-card c-temporal dashed">
+<span class="ev-tag">Correlates only</span>
+<svg class="ev-line" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1="4" y1="7" x2="196" y2="7"/></svg>
+<h3>TEMPORAL_CORRELATION</h3>
+<p>Something changed inside the observation window.</p>
+<dl><dt>Established by</dt><dd>A Prometheus signal for an in-scope workload differed from its baseline during the telemetry window. Causation is not established.</dd><dt>Relationship</dt><dd><code>TEMPORAL_CORRELATION</code></dd><dt>Source</dt><dd>Prometheus</dd></dl>
+</article>
+<article class="card ev-card c-inferred disabled" aria-label="INFERRED, not used in v0.1">
+<span class="ev-tag">Not used in v0.1</span>
+<svg class="ev-line" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1="4" y1="7" x2="196" y2="7"/></svg>
+<h3>INFERRED</h3>
+<p>Reserved for experimental heuristics so the schema stays stable.</p>
+<dl><dt>Status</dt><dd>Defined in the model, never emitted by v0.1. No language model and no guessing.</dd></dl>
+</article>
+</div>
+
+<div class="card wl-play" id="weakest-link">
+<h3>A path is only as strong as its weakest edge</h3>
+<p class="muted">A node's grade is the weakest evidence on its strongest path from the action: <span class="grade attributed">ATTRIBUTED</span> when every edge attributes, <span class="grade correlated">CORRELATED</span> as soon as one edge is only temporal. Change the edges below to see the grade of the last node.</p>
+<div class="wl-path" id="wl-path">
+<span class="wl-node">action</span>
+<span class="wl-edge c-trace" data-edge="0"><label class="visually-hidden" for="wl-e0">Evidence on edge 1</label><select id="wl-e0"></select><span class="wl-line" aria-hidden="true"></span></span>
+<span class="wl-node">request</span>
+<span class="wl-edge c-direct" data-edge="1"><label class="visually-hidden" for="wl-e1">Evidence on edge 2</label><select id="wl-e1"></select><span class="wl-line" aria-hidden="true"></span></span>
+<span class="wl-node">Deployment</span>
+<span class="wl-edge c-struct" data-edge="2"><label class="visually-hidden" for="wl-e2">Evidence on edge 3</label><select id="wl-e2"></select><span class="wl-line" aria-hidden="true"></span></span>
+<span class="wl-node">Pod</span>
+</div>
+<p class="wl-result" aria-live="polite">Grade of <span class="mono">Pod</span>: <span class="grade attributed" id="wl-grade">ATTRIBUTED</span> <span class="muted" id="wl-why">Every edge on the path attributes.</span></p>
+</div>
+
+<div class="two-col">
+<div>
+<h3>Ambiguity: an honest "cannot tell"</h3>
+<p class="muted">A change inside the windows of two actions that both changed an owner of the object is recorded as an <strong>ambiguity</strong> with both candidates, and attributed to neither. EffectTrace prefers "cannot tell" to a confident wrong answer.</p>
+<h3>Exclusion: visible false-attribution protection</h3>
+<p class="muted">A nearby change without an ownership path, a change claimed by another action, or a signal of a workload outside the action's scope is listed as an <strong>exclusion</strong> with its reason. You can see what was noticed and why it is not part of the graph.</p>
+<p><a href="replay.html#unrelated">See exclusions in a recorded replay →</a></p>
+</div>
+<div><figure class="art-frame"><picture><source data-theme-src="dark" media="(prefers-color-scheme: dark)" srcset="assets/art/concurrent-dark.svg"><source data-theme-src="light" media="(prefers-color-scheme: light)" srcset="assets/art/concurrent-light.svg"><img src="assets/art/concurrent-light.svg" alt="Two concurrent actions on different workloads keep separate graphs; two actions on the same workload leave the overlapping changes ambiguous." loading="lazy" decoding="async" width="900"></picture></figure></div>
+</div>
+<div class="evidence-art"><figure class="art-frame"><picture><source data-theme-src="dark" media="(prefers-color-scheme: dark)" srcset="assets/art/evidence-dark.svg"><source data-theme-src="light" media="(prefers-color-scheme: light)" srcset="assets/art/evidence-light.svg"><img src="assets/art/evidence-light.svg" alt="Evidence classes: DIRECT, TRACE_LINK, STRUCTURAL and EVENT_REFERENCE attribute; TEMPORAL_CORRELATION only correlates; INFERRED is not used in v0.1. A path is only as strong as its weakest edge." loading="lazy" decoding="async" width="900"></picture></figure></div>
+</div>
+</section>
+
+<section class="section" id="architecture" aria-labelledby="arch-title">
+<div class="container">
+<div class="section-head">
+<span class="kicker">Architecture</span>
+<h2 id="arch-title">One collector. Read-only, bounded, deterministic.</h2>
+<p>EffectTrace is a single Go collector plus a CLI. It is not a tracing backend, an MCP gateway, an AIOps engine or a model that guesses causality.</p>
+</div>
+<div class="grid grid-3">
+<div class="card"><div class="card-icon c-trace"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg></div><h3>Sources</h3><ul class="muted">
+<li>OTLP/HTTP trace receiver (<code>POST /v1/traces</code>)</li>
+<li>kube-apiserver audit log tailer (JSON lines, rotation-aware)</li>
+<li>Stripped client-go informers for workloads, Pods, Services and Events</li>
+<li>Prometheus range queries for configured signals</li></ul></div>
+<div class="card"><div class="card-icon c-struct"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="4" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="15" width="18" height="4" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/></svg></div><h3>Core</h3><ul class="muted">
+<li>One bounded ingest queue with explicit backpressure (HTTP 503 with <code>Retry-After</code>)</li>
+<li>Idempotent in-memory store with size and age limits</li>
+<li>Correlation engine: actions, targets, windows, claimants, grades</li>
+<li>Signal evaluator against a pre-action baseline</li></ul></div>
+<div class="card"><div class="card-icon c-direct"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4.5" width="18" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 10l3 2.5L7 15M12.5 15H17"/></svg></div><h3>Outputs</h3><ul class="muted">
+<li>Read-only HTTP API and the <code>effecttrace</code> CLI</li>
+<li>Canonical JSON with a published schema</li>
+<li>OTLP graph spans that <em>link</em> to the tool span</li>
+<li>Prometheus <code>/metrics</code> and replayable recordings</li></ul></div>
+</div>
+<div class="grid grid-4">
+<div class="card"><div class="card-icon c-direct"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 3l7.5 3v5.5c0 4.5-3.2 8.3-7.5 9.5-4.3-1.2-7.5-5-7.5-9.5V6z"/></svg></div><h3>Read-only RBAC</h3><p class="muted"><code>get/list/watch</code> only. No mutation rights, never ConfigMaps or Secrets.</p></div>
+<div class="card"><div class="card-icon c-struct"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="4" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="15" width="18" height="4" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/></svg></div><h3>Bounded</h3><p class="muted">Every queue and collection has a size and age limit. Producers see backpressure, not silent loss.</p></div>
+<div class="card"><div class="card-icon c-trace"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 10a6 6 0 106-6H7M7 1.5L4.5 4 7 6.5"/></svg></div><h3>Deterministic replay</h3><p class="muted">Graphs are rebuilt from stored observations: the same input in any order gives byte-identical canonical JSON.</p></div>
+<div class="card"><div class="card-icon c-event"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="5" cy="12" r="2.5" fill="currentColor"/><circle cx="19" cy="5" r="2.5" fill="currentColor"/><circle cx="19" cy="19" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" d="M7.3 11l9.4-5M7.3 13l9.4 5" stroke-dasharray="0"/></svg></div><h3>Portable</h3><p class="muted">A reusable client-go <code>RoundTripper</code> records Audit-ID and object identity without recording bodies.</p></div>
+</div>
+<div class="arch-terminal"><figure class="art-frame"><picture><source data-theme-src="dark" media="(prefers-color-scheme: dark)" srcset="assets/art/terminal-dark.svg"><source data-theme-src="light" media="(prefers-color-scheme: light)" srcset="assets/art/terminal-light.svg"><img src="assets/art/terminal-light.svg" alt="Terminal: effecttrace explain shows TRACE LINK to the PATCH request, DIRECT to the Deployment, STRUCTURAL to a new ReplicaSet and ready Pods, Event references, and http_p99_latency as TEMPORAL CORRELATION, ending with: Temporal correlation does not prove causation." loading="lazy" decoding="async" width="900"></picture></figure><p class="art-caption"><code>effecttrace explain</code> walks a graph in the terminal and ends every correlated answer with the same caveat.</p></div>
+</div>
+</section>
+
+<section class="section" id="proof" aria-labelledby="proof-title">
+<div class="container">
+<div class="section-head">
+<span class="kicker">Proof</span>
+<h2 id="proof-title">Scored against ground truth, failures included</h2>
+<p>The experiment suite runs against a kind lab and scores every effect graph against ground truth derived from the harness's own actions and an independent watch of the cluster, never from EffectTrace output.</p>
+</div>
+<div class="grid grid-3">
+<a class="card lift link-card" href="experiments.html"><div class="card-icon c-struct"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="4" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="15" width="18" height="4" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/></svg></div><h3>Experiments</h3><p class="muted">Every scenario with its checks, notes and status: pass, fail, error or unsupported.</p><span class="more">Browse experiments →</span></a>
+<a class="card lift link-card" href="results.html"><div class="card-icon c-direct"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="5" cy="12" r="2.5" fill="currentColor"/><circle cx="19" cy="5" r="2.5" fill="currentColor"/><circle cx="19" cy="19" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" d="M7.3 11l9.4-5M7.3 13l9.4 5" stroke-dasharray="0"/></svg></div><h3>Results</h3><p class="muted">Precision and recall for DIRECT and STRUCTURAL edges, false attachments, concurrency separation and timings.</p><span class="more">See results →</span></a>
+<a class="card lift link-card" href="replay.html"><div class="card-icon c-trace"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6 4.2v11.6L15.5 10z"/></svg></div><h3>Demo replay</h3><p class="muted">Step through recorded effect graphs in the browser, including the exclusions and ambiguities.</p><span class="more">Open the replay →</span></a>
+</div>
+</div>
+</section>
+
+<section class="section" id="quick-start" aria-labelledby="qs-title">
+<div class="container two-col">
+<div>
+<span class="kicker">Quick start</span>
+<h2 id="qs-title">A real lab on your laptop</h2>
+<p class="muted">Requirements: Go, <code>kubectl</code>, and Docker or Podman. No cloud account, model API key or SaaS backend is needed. The lab writes its own kubeconfig and never touches your current context.</p>
+<p class="muted"><code>make demo-run</code> is real end to end: a scripted MCP client calls a Go MCP server, a human scales another workload at the same moment, and two agents act concurrently on two workloads.</p>
+<p><a href="https://github.com/effecttrace/effecttrace/blob/main/README.md#quick-start">Full quick start on GitHub →</a></p>
+</div>
+<div>
+<div class="code-block" id="qs-code" role="region" aria-label="Quick start commands">
+<button class="icon-btn btn-sm copy-btn" type="button" data-copy-target="qs-code"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><rect x="7" y="7" width="10" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M13 4.5V4a1.5 1.5 0 00-1.5-1.5h-7A1.5 1.5 0 003 4v7a1.5 1.5 0 001.5 1.5H5"/></svg><span class="copy-label">Copy</span></button>
+<div data-cmd="git clone https://github.com/effecttrace/effecttrace &amp;&amp; cd effecttrace"><span class="p">$ </span>git clone https://github.com/effecttrace/effecttrace &amp;&amp; cd effecttrace</div>
+<div data-cmd="make demo-up"><span class="p">$ </span>make demo-up    <span class="c"># kind lab: shop workload, OTel Collector, Prometheus, EffectTrace</span></div>
+<div data-cmd="make demo-run"><span class="p">$ </span>make demo-run   <span class="c"># a scripted agent acts; EffectTrace explains each graph</span></div>
+<div data-cmd="make demo-down"><span class="p">$ </span>make demo-down  <span class="c"># deletes only the effecttrace-lab cluster</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="more-title">
+<div class="container">
+<div class="section-head">
+<span class="kicker">Go deeper</span>
+<h2 id="more-title">Built on open standards, honest about its limits</h2>
+</div>
+<div class="grid grid-4">
+<a class="card lift link-card" href="opentelemetry.html"><h3>OpenTelemetry</h3><p class="muted">OTLP in, MCP trace context, graph export as span links.</p><span class="more">Read →</span></a>
+<a class="card lift link-card" href="kubernetes.html"><h3>Kubernetes</h3><p class="muted">Audit-ID, UIDs, ownerReferences and a read-only watch.</p><span class="more">Read →</span></a>
+<a class="card lift link-card" href="security.html"><h3>Security &amp; privacy</h3><p class="muted">Metadata, not payloads. Observability, not authorization.</p><span class="more">Read →</span></a>
+<a class="card lift link-card" href="limitations.html"><h3>Limitations</h3><p class="muted">What EffectTrace cannot tell you, stated plainly.</p><span class="more">Read →</span></a>
+</div>
+</div>
+</section>
+
+</main>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<img class="theme-dark-only" src="assets/logo-dark.svg" alt="EffectTrace" width="113" height="30" loading="lazy">
+<img class="theme-light-only" src="assets/logo.svg" alt="EffectTrace" width="113" height="30" loading="lazy">
+<p>Open, evidence-graded observability from agent actions to Kubernetes effects.</p>
+</div>
+<div class="footer-col"><h2>Learn</h2><ul>
+<li><a href="index.html#problem">Problem</a></li>
+<li><a href="index.html#how-it-works">How it works</a></li>
+<li><a href="index.html#evidence">Evidence model</a></li>
+<li><a href="index.html#architecture">Architecture</a></li>
+</ul></div>
+<div class="footer-col"><h2>Proof</h2><ul>
+<li><a href="experiments.html">Experiments</a></li>
+<li><a href="results.html">Results</a></li>
+<li><a href="replay.html">Demo replay</a></li>
+</ul></div>
+<div class="footer-col"><h2>Integrations</h2><ul>
+<li><a href="opentelemetry.html">OpenTelemetry</a></li>
+<li><a href="kubernetes.html">Kubernetes</a></li>
+</ul></div>
+<div class="footer-col"><h2>Project</h2><ul>
+<li><a href="security.html">Security &amp; privacy</a></li>
+<li><a href="limitations.html">Limitations</a></li>
+<li><a href="project.html#docs">Docs</a></li>
+<li><a href="project.html#roadmap">Roadmap</a></li>
+<li><a href="project.html#contributing">Contributing</a></li>
+<li><a href="https://github.com/effecttrace/effecttrace">GitHub</a></li>
+</ul></div>
+</div>
+<div class="footer-bottom">
+<span>EffectTrace is open source under the <a href="https://github.com/effecttrace/effecttrace/blob/main/LICENSE">Apache License 2.0</a>. No cookies, no analytics, no third-party requests.</span>
+<span class="causal">Temporal correlation does not prove causation.</span>
+</div>
+</div>
+</footer>
+</body>
+</html>

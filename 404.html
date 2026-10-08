@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'sha256-srwj2OgJ832IVFzAMhamMG0WKvNZkGA1TUDT7WSo1LY='; script-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<title>Page not found · EffectTrace</title>
+<style>
+:root{color-scheme:dark light;--bg:#0b0f17;--text:#e6edf3;--muted:#a3b0c2;--surface:#111823;--border:#233046;--link:#79c0ff;
+--g1:#3fb950;--g2:#39c5cf;--g3:#58a6ff;--g4:#a371f7}
+@media (prefers-color-scheme: light){:root{--bg:#f6f8fb;--text:#0d1726;--muted:#4d5b6e;--surface:#fff;--border:#d3dbe7;--link:#0a5fc8;
+--g1:#17782f;--g2:#086f79;--g3:#0a5fc8;--g4:#7a46d6}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px 16px;background:var(--bg);color:var(--text);
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;text-align:center}
+main{max-width:560px}
+.big{font-size:clamp(4rem,3rem + 6vw,8rem);font-weight:900;letter-spacing:-.05em;line-height:1;margin:16px 0 8px;
+background:linear-gradient(100deg,var(--g1),var(--g2) 35%,var(--g3) 68%,var(--g4));-webkit-background-clip:text;background-clip:text;color:transparent}
+h1{font-size:1.6rem;margin:0 0 8px}
+p{color:var(--muted)}
+.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+a.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:12px;border:1px solid var(--border);
+background:var(--surface);color:var(--text);font-weight:650;text-decoration:none}
+a.btn.primary{background:var(--text);color:var(--bg);border-color:var(--text)}
+a:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.note{font-size:.88rem;margin-top:28px;color:var(--muted)}
+.mark{width:64px;height:64px;margin:0 auto}
+</style>
+</head>
+<body>
+<main>
+<svg class="mark" viewBox="0 0 64 64" role="img" aria-label="EffectTrace mark"><path d="M13 32 C 22 32 22.5 15 32 15 H 46" fill="none" stroke="#3fb950" stroke-width="4.6" stroke-linecap="round"/><path d="M13 32 H 46" fill="none" stroke="#39c5cf" stroke-width="4.6" stroke-linecap="round"/><path d="M13 32 C 22 32 22.5 49 32 49 H 46" fill="none" stroke="#d29922" stroke-width="4.6" stroke-linecap="round" stroke-dasharray="0.01 7.4"/><circle cx="52" cy="15" r="5" fill="#3fb950"/><circle cx="52" cy="32" r="5" fill="#39c5cf"/><circle cx="52" cy="49" r="4" fill="none" stroke="#d29922" stroke-width="2.4"/><circle cx="13" cy="32" r="6.4" fill="#7d8590"/></svg>
+<p class="big">404</p>
+<h1>No path to this page</h1>
+<p>We looked for an ownership path from your request to a page and found none, so it is listed as excluded.</p>
+<div class="row"><a class="btn primary" href="https://effecttrace.github.io/">EffectTrace home</a><a class="btn" href="https://effecttrace.github.io/replay.html">Open the replay</a><a class="btn" href="https://github.com/effecttrace/effecttrace">GitHub</a></div>
+<p class="note">Temporal correlation does not prove causation.</p>
+</main>
+</body>
+</html>

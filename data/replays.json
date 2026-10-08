@@ -1,0 +1,64 @@
+{
+  "replays": [
+    {
+      "id": "restart",
+      "title": "Restart workload",
+      "scenario": "L01",
+      "graphs": [
+        "L01-1"
+      ]
+    },
+    {
+      "id": "scale",
+      "title": "Scale deployment",
+      "scenario": "L02",
+      "graphs": [
+        "L02-1"
+      ]
+    },
+    {
+      "id": "bad-image",
+      "title": "Bad image rollout",
+      "scenario": "L06",
+      "graphs": [
+        "L06-1"
+      ]
+    },
+    {
+      "id": "unrelated",
+      "title": "Unrelated concurrent change",
+      "scenario": "L15",
+      "graphs": [
+        "L15-1",
+        "L15-2"
+      ]
+    },
+    {
+      "id": "concurrent",
+      "title": "Two concurrent actions",
+      "scenario": "L14",
+      "graphs": [
+        "L14-1",
+        "L14-2"
+      ]
+    },
+    {
+      "id": "same-workload",
+      "title": "Two actions, same workload",
+      "scenario": "L16",
+      "graphs": [
+        "L16-1",
+        "L16-2"
+      ]
+    },
+    {
+      "id": "no-trace-context",
+      "title": "Trace context lost",
+      "scenario": "L24",
+      "graphs": [
+        "L24-1",
+        "L24-2"
+      ]
+    }
+  ]
+}
